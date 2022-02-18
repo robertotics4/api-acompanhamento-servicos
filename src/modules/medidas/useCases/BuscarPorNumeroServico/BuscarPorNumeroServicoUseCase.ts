@@ -1,9 +1,14 @@
+import { inject, injectable } from 'tsyringe';
 import { AppError } from '../../../../errors/AppError';
 import { Medida } from '../../entities/Medida';
 import { IMedidasRepository } from '../../repositories/IMedidasRepository';
 
+@injectable()
 class BuscarPorNumeroServicoUseCase {
-  constructor(private medidasRepository: IMedidasRepository) {}
+  constructor(
+    @inject('MedidasRepository')
+    private medidasRepository: IMedidasRepository,
+  ) {}
 
   async execute(numeroServico: string): Promise<Medida[]> {
     if (!numeroServico) {

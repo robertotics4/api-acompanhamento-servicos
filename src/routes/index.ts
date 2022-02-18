@@ -1,8 +1,8 @@
 import { Router } from 'express';
+import { medidasRoutes } from './medidas.routes';
 
 const router = Router();
 
-// Add your routes here
-// ex: router.use('/clients', ...);
+router.use('/medidas', medidasRoutes);
 
 export default router;
