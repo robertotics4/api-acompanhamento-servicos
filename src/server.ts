@@ -4,6 +4,8 @@ import swaggerUi from 'swagger-ui-express';
 import 'dotenv/config';
 import 'express-async-errors';
 
+import './database';
+
 import swaggerFile from './swagger.json';
 import errorHandler from './middlewares/errorHandler';
 import routes from './routes';
@@ -24,7 +26,7 @@ app.use(
 
 app.get('/', (request, response) => {
   return response.json({
-    apiName: 'API Template',
+    apiName: 'API Acompanhamento de solicitações',
     version: '1.0.0',
   });
 });
