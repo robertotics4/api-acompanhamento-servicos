@@ -16,6 +16,7 @@ class MedidasRepository implements IMedidasRepository {
               TJ.TXT30 AS TXTSTATUS,
               MGRP.KURZTEXT AS MEDIDA,
               MCD.KURZTEXT AS TXT_MEDIDA,
+              M.MANUM AS SEQUENCIA_MEDIDA,
               TO_DATE(M.PETER, 'YYYYMMDD') AS FIM_PLANEJADO_MEDIDA
           FROM SAPSR3.QMEL QM
           INNER JOIN SAPSR3.JEST JST ON JST.MANDT = QM.MANDT
@@ -43,9 +44,29 @@ class MedidasRepository implements IMedidasRepository {
                                   AND MCD.CODE = M.MNCOD
                                   AND MCD.KATALOGART = '2'
           WHERE QM.ZZNUMSO = '${numeroServico}'
-          ORDER BY FIM_PLANEJADO_MEDIDA DESC`;
+          ORDER BY M.MANUM DESC`;
 
-    const medidas = await knex.raw(query);
+    const result = await knex.raw(query);
+
+    const medidas: Medida[] = result.map((item: any) => {
+      const medida: Medida = new Medida({
+        numeroNota: item.NUMERO_NOTA,
+        numeroServico: item.NUMERO_SERVICO,
+        descricaoTipoNota: item.TXT_TIPO_NOTA,
+        descricaoCodeNota: item.TXT_CODE_NOTA,
+        dataCriacao: item.DATA_CRIACAO,
+        dataConclusaoDesejada: item.CONCLUSAO_DESEJADA,
+        contaContrato: item.CONTA_CONTRATO,
+        numeroSolicitacaoAtc: item.NUMERO_SOLICITACAO_ATC,
+        descricaoStatus: item.TXTSTATUS,
+        nomeMedida: item.MEDIDA,
+        descricaoMedida: item.TXT_MEDIDA,
+        numSequenciaMedida: item.SEQUENCIA_MEDIDA,
+        dataFimPlanejadoMedida: item.FIM_PLANEJADO_MEDIDA,
+      });
+
+      return medida;
+    });
 
     return medidas;
   }

@@ -13,8 +13,9 @@ class MedidasRepositoryInMemory implements IMedidasRepository {
       contaContrato: '003002125110',
       numeroSolicitacaoAtc: '8024709119',
       descricaoStatus: 'Ativa',
-      medida: 'Validações iniciais',
+      nomeMedida: 'Validações iniciais',
       descricaoMedida: 'Aprovada',
+      numSequenciaMedida: 3,
       dataFimPlanejadoMedida: new Date(2021, 11, 24),
     },
     {
@@ -27,8 +28,9 @@ class MedidasRepositoryInMemory implements IMedidasRepository {
       contaContrato: '003002125110',
       numeroSolicitacaoAtc: '8024709119',
       descricaoStatus: 'Ativa',
-      medida: 'Realizar Estudo',
+      nomeMedida: 'Realizar Estudo',
       descricaoMedida: 'Sem Necessidade de Obra',
+      numSequenciaMedida: 2,
       dataFimPlanejadoMedida: new Date(2021, 11, 27),
     },
     {
@@ -41,8 +43,9 @@ class MedidasRepositoryInMemory implements IMedidasRepository {
       contaContrato: '003002125110',
       numeroSolicitacaoAtc: '8024709119',
       descricaoStatus: 'Ativa',
-      medida: 'Analisar Projeto',
+      nomeMedida: 'Analisar Projeto',
       descricaoMedida: 'Projeto Analisado',
+      numSequenciaMedida: 1,
       dataFimPlanejadoMedida: new Date(2021, 11, 31),
     },
     {
@@ -55,8 +58,9 @@ class MedidasRepositoryInMemory implements IMedidasRepository {
       contaContrato: '000000002828',
       numeroSolicitacaoAtc: '8024707474',
       descricaoStatus: 'Ativa',
-      medida: 'Análise de documentos',
+      nomeMedida: 'Análise de documentos',
       descricaoMedida: 'Análise da documentação finalizada',
+      numSequenciaMedida: 1,
       dataFimPlanejadoMedida: new Date(2022, 1, 13),
     },
   ];

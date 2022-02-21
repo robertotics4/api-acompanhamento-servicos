@@ -34,5 +34,5 @@ app.get('/', (request, response) => {
 });
 
 app.listen(process.env.DEFAULT_API_PORT, () => {
-  console.log(`Server started on port ${process.env.DEFAULT_API_PORT}`);
+  console.log(`Servidor iniciado na porta ${process.env.DEFAULT_API_PORT}`);
 });
