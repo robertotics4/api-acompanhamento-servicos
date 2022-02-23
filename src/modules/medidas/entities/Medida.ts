@@ -12,6 +12,7 @@ interface IMedida {
   descricaoMedida: string;
   numSequenciaMedida: number;
   dataFimPlanejadoMedida: Date;
+  dataConclusao: Date;
 }
 
 class Medida {
@@ -41,6 +42,8 @@ class Medida {
 
   dataFimPlanejadoMedida: Date;
 
+  dataConclusao: Date;
+
   constructor(args: IMedida) {
     this.numeroNota = args.numeroNota;
     this.numeroServico = args.numeroServico;
@@ -55,6 +58,7 @@ class Medida {
     this.descricaoMedida = args.descricaoMedida;
     this.numSequenciaMedida = args.numSequenciaMedida;
     this.dataFimPlanejadoMedida = args.dataFimPlanejadoMedida;
+    this.dataConclusao = args.dataConclusao;
   }
 }
 

@@ -1,6 +1,6 @@
 import knex from 'knex';
 
-import knexfile from '../../knexfile';
+import knexfile from './knexfile';
 
 const connection = knex(knexfile);
 

@@ -17,6 +17,7 @@ class MedidasRepositoryInMemory implements IMedidasRepository {
       descricaoMedida: 'Aprovada',
       numSequenciaMedida: 3,
       dataFimPlanejadoMedida: new Date(2021, 11, 24),
+      dataConclusao: new Date(2021, 11, 24),
     },
     {
       numeroNota: '001059605158',
@@ -32,6 +33,7 @@ class MedidasRepositoryInMemory implements IMedidasRepository {
       descricaoMedida: 'Sem Necessidade de Obra',
       numSequenciaMedida: 2,
       dataFimPlanejadoMedida: new Date(2021, 11, 27),
+      dataConclusao: new Date(2021, 11, 27),
     },
     {
       numeroNota: '001059605158',
@@ -47,6 +49,7 @@ class MedidasRepositoryInMemory implements IMedidasRepository {
       descricaoMedida: 'Projeto Analisado',
       numSequenciaMedida: 1,
       dataFimPlanejadoMedida: new Date(2021, 11, 31),
+      dataConclusao: new Date(2021, 11, 31),
     },
     {
       numeroNota: '001059605257',
@@ -62,6 +65,7 @@ class MedidasRepositoryInMemory implements IMedidasRepository {
       descricaoMedida: 'Análise da documentação finalizada',
       numSequenciaMedida: 1,
       dataFimPlanejadoMedida: new Date(2022, 1, 13),
+      dataConclusao: new Date(2022, 1, 13),
     },
   ];
 
