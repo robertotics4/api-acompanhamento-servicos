@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
-app.use('/api', routes);
+app.use(routes);
 
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {
