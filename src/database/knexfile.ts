@@ -1,4 +1,4 @@
-const knexConfig = {
+const configSapDBMA = {
   client: 'oracledb',
   connection: {
     host: '10.7.3.14',
@@ -8,4 +8,14 @@ const knexConfig = {
   },
 };
 
-export default knexConfig;
+const configSapDBPA = {
+  client: 'oracledb',
+  connection: {
+    host: '10.130.3.126',
+    database: 'CLP_STD',
+    user: 'u10190',
+    password: 'Xls_52bcd',
+  },
+};
+
+export { configSapDBMA, configSapDBPA };

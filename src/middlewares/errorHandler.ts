@@ -1,3 +1,4 @@
+import { isCelebrateError } from 'celebrate';
 import { Request, Response, NextFunction } from 'express';
 import { AppError } from '../errors/AppError';
 
@@ -14,9 +15,21 @@ function errorHandler(
     });
   }
 
+  if (isCelebrateError(err)) {
+    const messages = [];
+
+    err.details.forEach(detail => messages.push(detail.message));
+
+    return response.status(400).json({
+      status: 'Validation error',
+      message: messages,
+    });
+  }
+
   return response.status(500).json({
     status: 'Error',
-    message: 'Internal server error',
+    // message: 'Internal server error',
+    message: err.message,
   });
 }
 

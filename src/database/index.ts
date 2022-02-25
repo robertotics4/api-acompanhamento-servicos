@@ -1,7 +1,8 @@
 import knex from 'knex';
 
-import knexfile from './knexfile';
+import { configSapDBMA, configSapDBPA } from './knexfile';
 
-const connection = knex(knexfile);
+const connectionSapDBMA = knex(configSapDBMA);
+const connectionSapDBPA = knex(configSapDBPA);
 
-export default connection;
+export { connectionSapDBMA, connectionSapDBPA };

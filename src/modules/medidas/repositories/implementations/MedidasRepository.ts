@@ -1,9 +1,13 @@
-import knex from '../../../../database';
+import { IBuscarPorNumeroServicoDTO } from 'modules/medidas/dtos/IBuscarPorNumeroServicoDTO';
+import { connectionSapDBMA, connectionSapDBPA } from '../../../../database';
 import { Medida } from '../../entities/Medida';
 import { IMedidasRepository } from '../IMedidasRepository';
 
 class MedidasRepository implements IMedidasRepository {
-  async buscarPorNumeroServico(numeroServico: string): Promise<Medida[]> {
+  async buscarPorNumeroServico({
+    empresaOperadora,
+    numeroServico,
+  }: IBuscarPorNumeroServicoDTO): Promise<Medida[]> {
     const query = `
     SELECT *
       FROM (SELECT QM.QMNUM AS NUMERO_NOTA,
@@ -76,30 +80,41 @@ class MedidasRepository implements IMedidasRepository {
     WHERE NOTA_FILHA IS NULL
     `;
 
-    const result = await knex.raw(query);
+    let result;
 
-    const medidas: Medida[] = result.map((item: any) => {
-      const medida: Medida = new Medida({
-        numeroNota: item.NUMERO_NOTA,
-        numeroServico: item.NUMERO_SERVICO,
-        descricaoTipoNota: item.TXT_TIPO_NOTA,
-        descricaoCodeNota: item.TXT_CODE_NOTA,
-        dataCriacao: item.DATA_CRIACAO,
-        dataConclusaoDesejada: item.CONCLUSAO_DESEJADA,
-        contaContrato: item.CONTA_CONTRATO,
-        numeroSolicitacaoAtc: item.NUMERO_SOLICITACAO_ATC,
-        descricaoStatus: item.TXTSTATUS,
-        nomeMedida: item.MEDIDA,
-        descricaoMedida: item.TXT_MEDIDA,
-        numSequenciaMedida: item.SEQUENCIA_MEDIDA,
-        dataFimPlanejadoMedida: item.FIM_PLANEJADO_MEDIDA,
-        dataConclusao: item.DATA_CONCLUSAO,
+    if (empresaOperadora === 98) {
+      result = await connectionSapDBMA.raw(query);
+    } else if (empresaOperadora === 95) {
+      result = await connectionSapDBPA.raw(query);
+    }
+
+    if (Array.isArray(result) && result.length) {
+      const medidas: Medida[] = result.map((item: any) => {
+        const medida: Medida = new Medida({
+          empresaOperadora,
+          numeroNota: item.NUMERO_NOTA,
+          numeroServico: item.NUMERO_SERVICO,
+          descricaoTipoNota: item.TXT_TIPO_NOTA,
+          descricaoCodeNota: item.TXT_CODE_NOTA,
+          dataCriacao: item.DATA_CRIACAO,
+          dataConclusaoDesejada: item.CONCLUSAO_DESEJADA,
+          contaContrato: item.CONTA_CONTRATO,
+          numeroSolicitacaoAtc: item.NUMERO_SOLICITACAO_ATC,
+          descricaoStatus: item.TXTSTATUS,
+          nomeMedida: item.MEDIDA,
+          descricaoMedida: item.TXT_MEDIDA,
+          numSequenciaMedida: item.SEQUENCIA_MEDIDA,
+          dataFimPlanejadoMedida: item.FIM_PLANEJADO_MEDIDA,
+          dataConclusao: item.DATA_CONCLUSAO,
+        });
+
+        return medida;
       });
 
-      return medida;
-    });
+      return medidas;
+    }
 
-    return medidas;
+    return [];
   }
 }
 

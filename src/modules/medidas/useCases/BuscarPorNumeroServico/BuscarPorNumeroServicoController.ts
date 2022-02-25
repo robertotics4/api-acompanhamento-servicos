@@ -4,13 +4,16 @@ import { BuscarPorNumeroServicoUseCase } from './BuscarPorNumeroServicoUseCase';
 
 class BuscarPorNumeroServicoController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { numeroServico } = request.params;
+    const { empresaOperadora, numeroServico } = request.query;
 
     const buscarPorNumeroServico = container.resolve(
       BuscarPorNumeroServicoUseCase,
     );
 
-    const medidas = await buscarPorNumeroServico.execute(numeroServico);
+    const medidas = await buscarPorNumeroServico.execute({
+      empresaOperadora: Number(empresaOperadora),
+      numeroServico: numeroServico as string,
+    });
 
     return response.json(medidas);
   }

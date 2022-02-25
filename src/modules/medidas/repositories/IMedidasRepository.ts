@@ -1,7 +1,8 @@
+import { IBuscarPorNumeroServicoDTO } from '../dtos/IBuscarPorNumeroServicoDTO';
 import { Medida } from '../entities/Medida';
 
 interface IMedidasRepository {
-  buscarPorNumeroServico(numeroServico: string): Promise<Medida[]>;
+  buscarPorNumeroServico(data: IBuscarPorNumeroServicoDTO): Promise<Medida[]>;
 }
 
 export { IMedidasRepository };

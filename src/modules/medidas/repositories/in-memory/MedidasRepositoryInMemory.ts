@@ -1,9 +1,11 @@
+import { IBuscarPorNumeroServicoDTO } from 'modules/medidas/dtos/IBuscarPorNumeroServicoDTO';
 import { Medida } from '../../entities/Medida';
 import { IMedidasRepository } from '../IMedidasRepository';
 
 class MedidasRepositoryInMemory implements IMedidasRepository {
   private readonly medidas: Medida[] = [
     {
+      empresaOperadora: 98,
       numeroNota: '001059605158',
       numeroServico: '8024709119',
       descricaoTipoNota: 'Micro e Minigeração',
@@ -20,6 +22,7 @@ class MedidasRepositoryInMemory implements IMedidasRepository {
       dataConclusao: new Date(2021, 11, 24),
     },
     {
+      empresaOperadora: 98,
       numeroNota: '001059605158',
       numeroServico: '8024709119',
       descricaoTipoNota: 'Micro e Minigeração',
@@ -36,6 +39,7 @@ class MedidasRepositoryInMemory implements IMedidasRepository {
       dataConclusao: new Date(2021, 11, 27),
     },
     {
+      empresaOperadora: 98,
       numeroNota: '001059605158',
       numeroServico: '8024709119',
       descricaoTipoNota: 'Micro e Minigeração',
@@ -52,6 +56,7 @@ class MedidasRepositoryInMemory implements IMedidasRepository {
       dataConclusao: new Date(2021, 11, 31),
     },
     {
+      empresaOperadora: 98,
       numeroNota: '001059605257',
       numeroServico: '8024708888',
       descricaoTipoNota: 'Ligação nova',
@@ -67,11 +72,50 @@ class MedidasRepositoryInMemory implements IMedidasRepository {
       dataFimPlanejadoMedida: new Date(2022, 1, 13),
       dataConclusao: new Date(2022, 1, 13),
     },
+    {
+      empresaOperadora: 95,
+      numeroNota: '001059605158',
+      numeroServico: '8024709119',
+      descricaoTipoNota: 'Micro e Minigeração',
+      descricaoCodeNota: 'Acesso à Microgeração Distribuída',
+      dataCriacao: new Date(2021, 11, 23),
+      dataConclusaoDesejada: new Date(2022, 5, 13),
+      contaContrato: '003002125110',
+      numeroSolicitacaoAtc: '8024709119',
+      descricaoStatus: 'Ativa',
+      nomeMedida: 'Validações iniciais',
+      descricaoMedida: 'Aprovada',
+      numSequenciaMedida: 3,
+      dataFimPlanejadoMedida: new Date(2021, 11, 24),
+      dataConclusao: new Date(2021, 11, 24),
+    },
+    {
+      empresaOperadora: 95,
+      numeroNota: '001059605158',
+      numeroServico: '8024709119',
+      descricaoTipoNota: 'Micro e Minigeração',
+      descricaoCodeNota: 'Acesso à Microgeração Distribuída',
+      dataCriacao: new Date(2021, 11, 23),
+      dataConclusaoDesejada: new Date(2022, 5, 13),
+      contaContrato: '003002125110',
+      numeroSolicitacaoAtc: '8024709119',
+      descricaoStatus: 'Ativa',
+      nomeMedida: 'Realizar Estudo',
+      descricaoMedida: 'Sem Necessidade de Obra',
+      numSequenciaMedida: 2,
+      dataFimPlanejadoMedida: new Date(2021, 11, 27),
+      dataConclusao: new Date(2021, 11, 27),
+    },
   ];
 
-  async buscarPorNumeroServico(numeroServico: string): Promise<Medida[]> {
+  async buscarPorNumeroServico({
+    empresaOperadora,
+    numeroServico,
+  }: IBuscarPorNumeroServicoDTO): Promise<Medida[]> {
     const medidas = this.medidas.filter(
-      medida => medida.numeroServico === numeroServico,
+      medida =>
+        empresaOperadora === medida.empresaOperadora &&
+        medida.numeroServico === numeroServico,
     );
 
     return medidas;

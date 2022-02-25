@@ -1,4 +1,5 @@
 interface IMedida {
+  empresaOperadora: number;
   numeroNota: string;
   numeroServico: string;
   descricaoTipoNota: string;
@@ -16,6 +17,8 @@ interface IMedida {
 }
 
 class Medida {
+  empresaOperadora: number;
+
   numeroNota: string;
 
   numeroServico: string;
@@ -45,6 +48,7 @@ class Medida {
   dataConclusao: Date;
 
   constructor(args: IMedida) {
+    this.empresaOperadora = args.empresaOperadora;
     this.numeroNota = args.numeroNota;
     this.numeroServico = args.numeroServico;
     this.descricaoTipoNota = args.descricaoTipoNota;
