@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  app:
+    build: .
+    container_name: api-acompanhamento-servicos
+    ports:
+      - 3335:3335
+    volumes:
+      - .:/usr/app
