@@ -3,8 +3,8 @@ const configSapDBMA = {
   connection: {
     host: '10.7.3.14',
     database: 'CCP_STD',
-    user: 'u10190',
-    password: 'Xls_52bcd',
+    user: 'SDIGITAL',
+    password: 'sujau#123',
   },
 };
 
@@ -13,8 +13,8 @@ const configSapDBPA = {
   connection: {
     host: '10.130.3.126',
     database: 'CLP_STD',
-    user: 'u10190',
-    password: 'Xls_52bcd',
+    user: 'SDIGITAL',
+    password: 'sujau#123',
   },
 };
 
