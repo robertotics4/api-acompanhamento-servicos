@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
-app.use('/api', routes);
+app.use(routes);
 
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {
@@ -26,7 +26,7 @@ app.use(
   },
 );
 
-app.get('/api', (request, response) => {
+app.get('/', (request, response) => {
   return response.json({
     apiName: 'API Acompanhamento de serviços',
     version: '1.0.0',

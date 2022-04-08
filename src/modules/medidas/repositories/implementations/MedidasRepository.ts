@@ -7,6 +7,7 @@ class MedidasRepository implements IMedidasRepository {
   async buscarPorNumeroServico({
     empresaOperadora,
     numeroServico,
+    contaContrato,
   }: IBuscarPorNumeroServicoDTO): Promise<Medida[]> {
     const query = `
     SELECT *
@@ -76,6 +77,7 @@ class MedidasRepository implements IMedidasRepository {
           LEFT JOIN SAPSR3.ZCSCT002_NOTASFL FL ON FL.MANDT = QM.MANDT
                                               AND FL.NOTFL = QM.QMNUM
         WHERE QM.ZZNUMSO = '${numeroServico}'
+        AND QM.ZZVKONT = LPAD(${contaContrato}, 12, 0)
         ORDER BY M.MANUM DESC)
     WHERE NOTA_FILHA IS NULL
     `;

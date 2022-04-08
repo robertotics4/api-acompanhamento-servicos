@@ -111,11 +111,13 @@ class MedidasRepositoryInMemory implements IMedidasRepository {
   async buscarPorNumeroServico({
     empresaOperadora,
     numeroServico,
+    contaContrato,
   }: IBuscarPorNumeroServicoDTO): Promise<Medida[]> {
     const medidas = this.medidas.filter(
       medida =>
         empresaOperadora === medida.empresaOperadora &&
-        medida.numeroServico === numeroServico,
+        numeroServico === medida.numeroServico &&
+        contaContrato === medida.contaContrato,
     );
 
     return medidas;

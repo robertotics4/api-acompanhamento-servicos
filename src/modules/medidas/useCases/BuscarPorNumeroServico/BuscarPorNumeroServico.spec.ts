@@ -12,12 +12,13 @@ describe('Buscar medidas por protocolo', () => {
     );
   });
 
-  it('Espero que sejam listadas as medidas referentes a um protocolo específico de uma determinada empresaOperadora', async () => {
+  it('Espero que sejam listadas as medidas referentes a um protocolo e uma contaContrato específicos de uma determinada empresaOperadora', async () => {
     const medidas = await buscarPorNumeroServico.execute({
       empresaOperadora: 98,
-      numeroServico: '8024709119',
+      numeroServico: '8024708888',
+      contaContrato: '000000002828',
     });
 
-    expect(medidas.length).toBe(3);
+    expect(medidas.length).toBe(1);
   });
 });

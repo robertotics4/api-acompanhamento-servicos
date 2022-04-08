@@ -15,6 +15,10 @@ medidasRoutes.get(
         .required()
         .pattern(new RegExp(/^[0-9.]+$/))
         .length(10),
+      contaContrato: Joi.string()
+        .required()
+        .pattern(new RegExp(/^[0-9.]+$/))
+        .max(12),
     },
   }),
   buscarPorNumeroServicoController.handle,
