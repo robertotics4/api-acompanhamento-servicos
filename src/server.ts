@@ -26,7 +26,7 @@ app.use(
   },
 );
 
-app.get('/', (request, response) => {
+app.get('/api', (request, response) => {
   return response.json({
     apiName: 'API Acompanhamento de serviços',
     version: '1.0.0',
