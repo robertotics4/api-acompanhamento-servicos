@@ -1,11 +1,178 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "API Documentation",
-    "description": "This is an API ...",
+    "title": "API Acompanhamento Serviços",
+    "description": "API para consulta das medidas de solicitações de serviço",
     "version": "1.0.0",
     "contact": {
-      "email": "robertooliveiragp@gmail.com"
+      "email": "luis.oliveira@equatorialenergia.com.br"
+    }
+  },
+  "paths": {
+    "/medidas": {
+      "get": {
+        "tags": [ "Medida" ],
+        "summary": "Buscar medidas",
+        "description": "Buscar medidas das solicitações de serviço",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "empresaOperadora",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "enum": [
+                82,
+                86,
+                95,
+                98,
+                53
+              ],
+              "example": 98
+            }
+          },
+          {
+            "in": "query",
+            "name": "contaContrato",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 12,
+              "example": "000012345678"
+            }
+          },
+          {
+            "in": "query",
+            "name": "numeroServico",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 12,
+              "example": "000012345678"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "empresaOperadora": {
+                        "type": "number",
+                        "example": 98
+                      },
+                      "numeroNota": {
+                        "type": "string",
+                        "example": "001042787984"
+                      },
+                      "numeroServico": {
+                        "type": "string",
+                        "example": "8019374571"
+                      },
+                      "descricaoTipoNota": {
+                        "type": "string",
+                        "example": "Reclamação cliente"
+                      },
+                      "dataCriacao": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2020-08-17T03:00:00.000Z"
+                      },
+                      "dataConclusaoDesejada": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2020-08-24T03:00:00.000Z"
+                      },
+                      "contaContrato": {
+                        "type": "string",
+                        "example": "0000123456"
+                      },
+                      "numeroSolicitacaoAtc": {
+                        "type": "string",
+                        "example": "8019374571"
+                      },
+                      "descricaoStatus": {
+                        "type": "string",
+                        "example": "Finalizada"
+                      },
+                      "nomeMedida": {
+                        "type": "string",
+                        "example": "Análise da resposta da área responsável"
+                      },
+                      "descricaoMedida": {
+                        "type": "string",
+                        "example": "Reclamação improcedente"
+                      },
+                      "numSequenciaMedida": {
+                        "type": "string",
+                        "example": "0002"
+                      },
+                      "dataFimPlanejadoMedida": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2020-08-21T03:00:00.000Z"
+                      },
+                      "dataConclusao": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2020-08-19T03:00:00.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição Inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Validation error"
+                    },
+                    "message": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "empresaOperadora is not allowed to be empty"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
