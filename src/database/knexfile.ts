@@ -1,20 +1,20 @@
 const configSapDBMA = {
-  client: 'oracledb',
+  client: process.env.DB_CLIENT,
   connection: {
-    host: '10.7.3.14',
-    database: 'CCP_STD',
-    user: 'SDIGITAL',
-    password: 'sujau#123',
+    host: process.env.DB_HOST_MA,
+    database: process.env.DB_NAME_MA,
+    user: process.env.DB_USER_MA,
+    password: process.env.DB_PASSWORD_MA,
   },
 };
 
 const configSapDBPA = {
-  client: 'oracledb',
+  client: process.env.DB_CLIENT,
   connection: {
-    host: '10.130.3.126',
-    database: 'CLP_STD',
-    user: 'SDIGITAL',
-    password: 'sujau#123',
+    host: process.env.DB_HOST_PA,
+    database: process.env.DB_NAME_PA,
+    user: process.env.DB_USER_PA,
+    password: process.env.DB_PASSWORD_PA,
   },
 };
 
